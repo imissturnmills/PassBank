@@ -6,7 +6,6 @@ const mysql = require('mysql2/promise');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// 1. DATABASE CONNECTION
 const pool = mysql.createPool({
     host:             process.env.DB_HOST     || 'localhost',
     port:             process.env.DB_PORT     || 3306,
@@ -17,7 +16,6 @@ const pool = mysql.createPool({
     waitForConnections: true,
 });
 
-// Test Connection immediately
 pool.getConnection()
     .then(connection => {
         console.log("✅ Connected to MySQL Database:", process.env.DB_NAME);
@@ -27,18 +25,14 @@ pool.getConnection()
         console.error("❌ DATABASE CONNECTION FAILED:", err.message);
     });
 
-// 2. MIDDLEWARE
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../Client')));
 
-// 3. ROUTES
 
-// Login Function
 app.post('/api/login', async (req, res) => {
     try {
         const { username, master_password } = req.body;
 
-        // DEBUG LOGS - Check your terminal when you click login!
         console.log("--- Login Attempt ---");
         console.log("Username provided:", username);
         console.log("Password provided:", master_password);
@@ -61,7 +55,6 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// GET all passwords for a user
 app.get('/api/user/passwords/all/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
@@ -73,7 +66,6 @@ app.get('/api/user/passwords/all/:userId', async (req, res) => {
     }
 });
 
-// POST a new password entry
 app.post('/api/user/passwords', async (req, res) => {
     try {
         const { userId, site, username, password } = req.body;
@@ -88,7 +80,6 @@ app.post('/api/user/passwords', async (req, res) => {
     }
 });
 
-// Delete specific password
 app.delete('/api/user/passwords/:id', async (req, res) => {
     try {
         await pool.execute('DELETE FROM entries WHERE id = ?', [req.params.id]);
@@ -98,7 +89,6 @@ app.delete('/api/user/passwords/:id', async (req, res) => {
     }
 });
 
-// Serve Frontend
 app.get('/*path', (req, res) => {
     if (req.url.startsWith('/api')) {
         console.log("❌ 404 Error: API Route not found:", req.url);
