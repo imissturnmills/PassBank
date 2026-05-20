@@ -1,0 +1,6 @@
+# .env.production
+PORT=3001
+DB_HOST=your-rds-endpoint.aws.com
+DB_USER=admin
+DB_PASSWORD=your-secure-rds-password
+DB_NAME=password_bank

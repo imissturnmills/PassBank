@@ -2,11 +2,19 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/Client/Field.min.js" />
         <item url="file://$PROJECT_DIR$/Client/PassBank.min.js" />
+        <item url="file://$PROJECT_DIR$/Client/index.min.js" />
+        <item url="file://$PROJECT_DIR$/Server/Server.min.js" />
+        <item url="file://$PROJECT_DIR$/Server/db.min.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/Client/Field.min.js" />
       <root url="file://$PROJECT_DIR$/Client/PassBank.min.js" />
+      <root url="file://$PROJECT_DIR$/Client/index.min.js" />
+      <root url="file://$PROJECT_DIR$/Server/Server.min.js" />
+      <root url="file://$PROJECT_DIR$/Server/db.min.js" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
